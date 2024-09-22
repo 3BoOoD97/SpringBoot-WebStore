@@ -1,15 +1,17 @@
 import { useParams } from "react-router-dom";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../axios";
 
 const Product = () => {
   const { id } = useParams();
-const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/product/${id}`);
+        const response = await axios.get(
+          `http://localhost:8080/api/product/${id}`
+        );
         setProduct(response.data);
         console.log(response.data);
       } catch (error) {
@@ -19,10 +21,6 @@ const [product, setProduct] = useState(null);
 
     fetchProduct();
   }, [id]);
-
-
-
-
 
   if (!product) {
     return (
@@ -46,7 +44,9 @@ const [product, setProduct] = useState(null);
           <div className="product-price">
             <span>{"$" + product.price}</span>
             <button
-              className={`cart-btn ${!product.productAvailable ? "disabled-btn" : ""}`}
+              className={`cart-btn ${
+                !product.productAvailable ? "disabled-btn" : ""
+              }`}
               disabled={!product.productAvailable}
             >
               {product.productAvailable ? "Add to cart" : "Out of Stock"}
@@ -54,27 +54,20 @@ const [product, setProduct] = useState(null);
             <h6>
               Stock Available :{" "}
               <i style={{ color: "green", fontWeight: "bold" }}>
-                {product.stockQuantity}
+                {product.quantity}
               </i>
             </h6>
             <p className="release-date">
               <h6>Product listed on:</h6>
-              <i>{product.releaseDate}</i>
+              <i>{product.relaseDate}</i>
             </p>
           </div>
           <div className="update-button ">
-            <button
-              className="btn btn-primary"
-              type="button"
-          
-            >
+            <button className="btn btn-primary" type="button">
               Update
             </button>
-        
-            <button
-              className="btn btn-primary"
-              type="button"
-            >
+
+            <button className="btn btn-primary" type="button">
               Delete
             </button>
           </div>
