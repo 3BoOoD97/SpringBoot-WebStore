@@ -92,17 +92,17 @@ const Product = () => {
               onClick={handlAddToCart}
               disabled={!product.productAvailable}
             >
-              {product.productAvailable ? "Add to cart" : "Out of Stock"}
+              {product.available ? "Add to cart" : "Out of Stock"}
             </button>
             <h6>
               Stock Available :{" "}
               <i style={{ color: "green", fontWeight: "bold" }}>
-                {product.stockQuantity}
+                {product.quantity}
               </i>
             </h6>
             <p className="release-date">
               <h6>Product listed on:</h6>
-              <i> {new Date(product.releaseDate).toLocaleDateString()}</i>
+              <i> {new Date(product.relaseDate).toLocaleDateString()}</i>
             </p>
           </div>
           {/* <div className="update-button ">
