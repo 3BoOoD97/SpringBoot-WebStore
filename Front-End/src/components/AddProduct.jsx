@@ -27,7 +27,7 @@ const AddProduct = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("imgFile", image);
+    formData.append("imageFile", image);
     formData.append(
       "product",
       new Blob([JSON.stringify(product)], { type: "application/json" })
@@ -139,7 +139,7 @@ const AddProduct = () => {
               className="form-control"
               placeholder="Stock Remaining"
               onChange={handleInputChange}
-              value={product.quantity}
+              value={product.stockQuantity}
               name="stockQuantity"
               // value={`${stockAlert}/${stockQuantity}`}
               id="stockQuantity"
@@ -152,7 +152,7 @@ const AddProduct = () => {
             <input
               type="date"
               className="form-control"
-              value={product.relaseDate}
+              value={product.releaseDate}
               name="releaseDate"
               onChange={handleInputChange}
               id="releaseDate"
@@ -177,9 +177,9 @@ const AddProduct = () => {
                 type="checkbox"
                 name="productAvailable"
                 id="gridCheck"
-                checked={product.available}
+                checked={product.productAvailable}
                 onChange={(e) =>
-                  setProduct({ ...product, available: e.target.checked })
+                  setProduct({ ...product, productAvailable: e.target.checked })
                 }
               />
               <label className="form-check-label">Product Available</label>
