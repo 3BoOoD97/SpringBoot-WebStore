@@ -51,4 +51,23 @@ public class ProductController {
         byte[] image = product.getImageData();
         return ResponseEntity.ok().contentType(MediaType.valueOf(product.getImageType())).body(image);
     }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable int id){
+        Product product = productService.getProductById(id);
+        if(product == null){
+            return new ResponseEntity<>("Delete Failed", HttpStatus.NOT_FOUND);
+        }
+        productService.deleteProduct(id);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    }
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable int id, @RequestPart Product product, @RequestPart MultipartFile imgFile) throws IOException {
+        Product updatedProduct = productService.updateProduct(id, product, imgFile);
+        if(updatedProduct == null){
+            return new ResponseEntity<>("Update Failed", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("Updated", HttpStatus.OK);
+    }
 }

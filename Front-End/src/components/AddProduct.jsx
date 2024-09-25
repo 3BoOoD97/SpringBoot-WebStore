@@ -27,7 +27,7 @@ const AddProduct = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("imageFile", image);
+    formData.append("imgFile", image);
     formData.append(
       "product",
       new Blob([JSON.stringify(product)], { type: "application/json" })
