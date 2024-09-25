@@ -70,4 +70,10 @@ public class ProductController {
         }
         return new ResponseEntity<>("Updated", HttpStatus.OK);
     }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword){
+        List<Product> products = productService.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
 }
